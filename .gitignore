@@ -1,0 +1,7 @@
+#config
+config.js
+node_modules/*
+results.json
+
+#OS junk files
+*.DS_Store

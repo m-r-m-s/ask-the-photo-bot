@@ -1,0 +1,33 @@
+{
+  "name": "ask-the-photo-bot",
+  "version": "1.0.0",
+  "description": "a friendly bot that encourages asking photographs questions",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-r-m-s/askthephotobot.git"
+  },
+  "keywords": [
+    "photography",
+    "questions",
+    "twitter",
+    "bot"
+  ],
+  "author": "matthew spencer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m-r-m-s/askthephotobot/issues"
+  },
+  "homepage": "https://github.com/m-r-m-s/askthephotobot#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "follow-redirects": "^0.2.0",
+    "knuth-shuffle": "^1.0.1",
+    "node-bing-api": "^2.4.1",
+    "ssl-root-cas": "^1.1.11",
+    "twit": "^2.2.4"
+  }
+}
