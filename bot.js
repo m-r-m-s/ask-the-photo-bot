@@ -236,12 +236,13 @@ streamOn(function (tweet) {
   var matchesTrigger  = request.match(trigger);
   var notTriggerMatch = !trigger.test(request);
   var aQuestion       = tweet.in_reply_to_status_id_str;
+  var notRT           = tweet.retweeted_status === undefined;
   tweetQueue.push({
     tweetId
   });
   console.log(tweetQueue);
 
-  if (matchesTrigger) {
+  if (matchesTrigger && notRT) {
     console.log('*** a request has been made: ' + tweet.text);
     setTimeout(function () {
       async.waterfall([
@@ -259,7 +260,7 @@ streamOn(function (tweet) {
         console.log(result);
       });
     }, 36000);
-  } else if (notTriggerMatch && !aQuestion) {
+  } else if (notTriggerMatch && !aQuestion && notRT) {
     console.log('*** doesn\'t match the trigger: ' + tweet.text);
     setTimeout(function () {
       if (tweetQueue.length > 0) {
@@ -284,7 +285,7 @@ streamOn(function (tweet) {
       }
     }, 36000);
   } else {
-    if (aQuestion && !matchesTrigger) {
+    if (aQuestion && !matchesTrigger && notRT) {
       console.log('*** Question Asked: ' + tweet.text);
       setTimeout(function () {
         if (tweetQueue.length > 0) {
