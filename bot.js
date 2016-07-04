@@ -197,7 +197,7 @@ function postTweet (tweet, botData, callback) {
       // selects one of the questions for the reply
       var pickRandomQuestion = Math.floor(Math.random() * questions.length);
       var question           = questions[pickRandomQuestion];
-      var reply              = '@' + name + ' ' + question + ' ' + 'Photograph by : ' + photographer;
+      var reply              = '@' + name + ' ' + question + ' ' + 'Photograph by: ' + photographer + ' ' + '#askthephoto';
       var params             = {
                                 status: reply,
                                 in_reply_to_status_id: newTweet.tweetId,
