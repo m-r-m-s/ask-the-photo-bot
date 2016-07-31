@@ -12,6 +12,9 @@ module.exports = {
     // regEx for the photo request
     trigger: /(?:[^"']|^)(\bshow me a pic\b|\bshow me a picture\b|\bshow me a photo\b|\bshow me a photograph\b)(?!["'])/ig,
 
+    // regEx for a question being asked
+    questionRegEx: /[^A-Za-z0-9',.;:"'&%@#*()!\s]/ig,
+
     // variety of try again phrases to avoide duplicate tweet errors
     tryAgainPhrases:
     [
@@ -65,5 +68,34 @@ module.exports = {
       ' Questions make me SMILE & photos ❤️💚💙 being asked questions! Hope you have an amazing day! 😍',
       ' 🌈🌈🌈 Fantastic!!! Photos ❤️💚💙 being asked questions. Hope you have a super day 😍 !',
       ' A marvelous question for the photo ❤️💚💙 ! Hope you have a superb day 😍 !'
+    ],
+
+    // suggestions for asking questions to photographs
+    questionSuggestions:
+    [
+      'Who or what do you see?',
+      'When was this photograph taken — what is happening in the photograph?',
+      'Where was this photograph taken?',
+      'Why did the photographer select these particular elements to include in the photograph?',
+       'What don\'t you see?',
+       'Why did the photographer emphasize certain elements and not others?',
+       'What\'s in focus?',
+       'Is only one person or element in focus, or are many elements in focus?',
+       'Why did the photographer take the picture at this moment?',
+       'What happened before or after this picture was taken?',
+       'Why did the photographer take the picture from this angle?',
+       'What might the scene have looked like from another vantage point — from left, right, behind, above, or below?',
+       'What is the photograph\'s composition?',
+       'What moment in time does the photograph capture?',
+       'What is the setting of this photograph?',
+       'What is the focal point of the photograph?',
+       'What did the photographer choose to include or exclude in the image?',
+       'If the photographer had zoomed out or stood further away, what additional information could we see?',
+       'How does the decision to frame only certain elements in the photograph affect the message conveyed by the photograph?',
+       'Why was the photograph made at that exact moment?',
+       'Why was the image of this moment chosen for display or publication over that of another?',
+       'What happened just before this moment, or just after it?',
+       'What was the photographer\'s thought process as they composed, framed, shot & selected this image?',
+       'What do we know about this photograph?'
     ]
 };
