@@ -235,7 +235,9 @@ streamOn(function (tweet) {
   var trigger         = config.trigger;
   var matchesTrigger  = request.match(trigger);
   var notTriggerMatch = !trigger.test(request);
-  var aQuestion       = tweet.in_reply_to_status_id_str;
+  var photoReply      = tweet.in_reply_to_status_id_str;
+  var questionRegEx   = config.questionRegEx;
+  var testQuestion    = questionRegEx.test(tweet.text);
   var notRT           = tweet.retweeted_status === undefined;
   tweetQueue.push({
     tweetId
@@ -260,7 +262,7 @@ streamOn(function (tweet) {
         console.log(result);
       });
     }, 36000);
-  } else if (notTriggerMatch && !aQuestion && notRT) {
+  } else if (notTriggerMatch && !photoReply && notRT) {
     console.log('*** doesn\'t match the trigger: ' + tweet.text);
     setTimeout(function () {
       if (tweetQueue.length > 0) {
@@ -285,7 +287,7 @@ streamOn(function (tweet) {
       }
     }, 36000);
   } else {
-    if (aQuestion && !matchesTrigger && notRT) {
+    if (photoReply && testQuestion && !matchesTrigger && notRT) {
       console.log('*** Question Asked: ' + tweet.text);
       setTimeout(function () {
         if (tweetQueue.length > 0) {
@@ -308,6 +310,31 @@ streamOn(function (tweet) {
           });
         }
       }, 36000);
-    }
+    } /*else {
+      if (photoReply && !testQuestion && !matchesTrigger && notRT) {
+        console.log('***question suggestions coming soon!');
+        setTimeout(function () {
+          if (tweetQueue.length > 0) {
+            var newTweet = tweetQueue.shift();
+            // question affirmations
+            var questionSuggestions = config.questionSuggestions;
+            var pickRandomPhrase = Math.floor(Math.random() * questionSuggestions.length);
+            var suggestions = questionSuggestions[pickRandomPhrase];
+            // contructs the reply response
+            var reply = '@' + name + ' ' + suggestions;
+            // parameters for posting a tweet
+            var params = { status: reply, in_reply_to_status_id: newTweet.tweetId };
+            T.post('statuses/update', params, function (err, data, response) {
+              if (err !== undefined) {
+                console.log(err);
+              } else {
+                console.log('*** tweeted: ' + params.status);
+                    // console.log(data);
+              }
+            });
+          }
+        }, 36000);
+      }
+    }*/
   }
 });
